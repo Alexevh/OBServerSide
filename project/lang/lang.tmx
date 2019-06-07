@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<tmx>
+<body>
+<tu tuid="error_nombre_categoria">
+    <tuv xml:lang="es">
+    <seg>Error se requiere un nombre de categoria</seg>
+    </tuv>
+    <tuv xml:lang="en">
+    <seg>Error name for category needed</seg>
+    </tuv>
+</tu>
+</body>
+</tmx>

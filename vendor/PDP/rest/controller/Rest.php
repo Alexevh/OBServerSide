@@ -12,6 +12,7 @@ class Rest extends \Zend_Rest_Controller {
     
     public function error(\Exception $e)
     {
+        //die($e->getCode());
         $this->getResponse()->setHttpResponseCode($e->getCode());
         $resultado = array("status"=>1, "Descripcion"=>$e->getMessage());
         $resultado = \Zend_Json_Encoder::encode($resultado);
@@ -22,6 +23,7 @@ class Rest extends \Zend_Rest_Controller {
     {
         //die("entra al init "); 
         $this->getResponse()->setHeader('Content-type', 'application/json');  
+        $this->lang = $lang = ($this->getHeader("lang"))?$this->getHeader("lang"):"es";
     }
     
     public function getParam($name){
