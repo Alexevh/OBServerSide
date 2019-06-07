@@ -1,6 +1,9 @@
 <?php
+namespace models;
+use model\Model;
+use patterns\ServiceLocator;
 
-class Pelicula {
+class Pelicula extends Model{
     
     public $id = null;
     public $titulo = null;

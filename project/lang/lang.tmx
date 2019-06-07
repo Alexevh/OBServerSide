@@ -9,5 +9,69 @@
     <seg>Error name for category needed</seg>
     </tuv>
 </tu>
+
+<tu tuid="error_campo_vacio_nombre">
+    <tuv xml:lang="es">
+    <seg>Error se requiere un nombre de usuario</seg>
+    </tuv>
+    <tuv xml:lang="en">
+    <seg>Error name for user needed</seg>
+    </tuv>
+</tu>
+
+<tu tuid="error_campo_vacio_email">
+    <tuv xml:lang="es">
+    <seg>Error se requiere un email valido</seg>
+    </tuv>
+    <tuv xml:lang="en">
+    <seg>Error email needed</seg>
+    </tuv>
+</tu>
+
+<tu tuid="error_campo_vacio_apellido">
+    <tuv xml:lang="es">
+    <seg>Error se requiere un apellido </seg>
+    </tuv>
+    <tuv xml:lang="en">
+    <seg>Error lastname needed</seg>
+    </tuv>
+</tu>
+<tu tuid="error_campo_vacio_telefono">
+    <tuv xml:lang="es">
+    <seg>Error se requiere un telefono </seg>
+    </tuv>
+    <tuv xml:lang="en">
+    <seg>Error phone needed</seg>
+    </tuv>
+</tu>
+
+
+
+<tu tuid="error_campo_vacio_titulo">
+    <tuv xml:lang="es">
+    <seg>Error se requiere un titulo valido</seg>
+    </tuv>
+    <tuv xml:lang="en">
+    <seg>Error title needed</seg>
+    </tuv>
+</tu>
+
+<tu tuid="error_campo_vacio_anio">
+    <tuv xml:lang="es">
+    <seg>Error se requiere un anio </seg>
+    </tuv>
+    <tuv xml:lang="en">
+    <seg>Error year needed</seg>
+    </tuv>
+</tu>
+<tu tuid="error_campo_vacio_categoria">
+    <tuv xml:lang="es">
+    <seg>Error se requiere una categoria </seg>
+    </tuv>
+    <tuv xml:lang="en">
+    <seg>Error category needed</seg>
+    </tuv>
+</tu>
+
 </body>
 </tmx>
