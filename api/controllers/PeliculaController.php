@@ -118,4 +118,43 @@ class PeliculaController extends Rest {
     }
     
     
+     public function getAction() {
+       
+           /* Vamos a especificar que el tipo de contenido que devolvemos es JSON */
+        $this->getResponse()->setHeader('Content-type', 'application/json');
+
+        try {
+
+            $lang = $this->lang;
+            $Translator = ServiceLocator::getTranslator($lang);
+
+
+            $id = $this->getParam("id");
+            //die("me llego ".$id);
+            if (empty($id)) {
+                throw new \Exception($Translator->_("invalid_id", 409));
+            }
+
+            $Pelicula = new Pelicula();
+            
+            /* Cargo la query*/
+            $Q = new Query($Pelicula);
+            $Q->add(new Qand("id", $id));
+            
+            /* Esto carga el device por el ID valido de la BD, el id lo tiene*/
+            if (!$Pelicula->load($Q))
+            {
+                throw new \Exception("Status no valido");
+            }
+            
+            $respuesta = array("status" => 0, "descripcion" => $Pelicula->toArray());
+
+
+            $this->response($respuesta, 200);
+        } catch (Exception $e) {
+            $this->error($e);
+        }
+    }
+    
+    
 }
