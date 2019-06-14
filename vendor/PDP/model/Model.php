@@ -15,7 +15,7 @@ class Model {
     
     public function __construct() {
        $this->Config = ServiceLocator::getConfig();
-       $this->Dao = new Dao();
+       $this->Dao = ServiceLocator::getDAO($this);
     }
     
     /* Convierto la clase en un aray y la devuelvo*/
@@ -40,5 +40,35 @@ class Model {
     {
         $this->created = date("Y-m-d H:i:s");
         $this->Dao->create($this);
+    }
+    
+    public function delete()
+    {
+        $this->Dao->delete($this);
+    }
+    
+    public function update()
+    {
+        $this->updated = date("Y-m-d H:i:s");
+        $this->Dao->update($this);
+    }
+    
+    public function save()
+    {
+        if ($this->id)
+        {
+            $this->update();
+        } else {
+            $this->create();
+        }
+    }
+    
+    public function load($Q){
+		return $this->Dao->load($this, $Q);
+	}
+        
+    public function fetch($Q)
+    {
+        return $this->Dao->fetch($Q, $this);
     }
 }
