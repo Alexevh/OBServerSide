@@ -11,6 +11,44 @@ use patterns\strategy\QueryAbstract;
 use patterns\strategy\QLike;
 
 class PeliculaController extends Rest {
+    
+    
+      public function indexAction() {
+        
+        //Si viene por body json uso getRawParam, si viene por URL getparam
+        $categoria = $this->getParam("categoria");
+        $titulo = $this->getParam("titulo");
+        $ranking = $this->getParam("ranking");
+        $Pelicula = new Pelicula();
+        //$RESULTADO = $Device->hola();
+        
+        if (!empty($categoria))
+        {
+            $Q = new Query($Pelicula);
+            $Q->add(new Qand("categoria", $categoria));
+      
+        }
+        
+        
+        if (!empty($titulo))
+        {
+            //
+            $Q = new Query($Pelicula);
+            $Q->add(new QLike("titulo", $titulo));
+            //die(" me llego".$titulo);
+        }
+         /* Vamos a especificar que el tipo de contenido que devolvemos es JSON */
+        $this->getResponse()->setHeader('Content-type', 'application/json');
+        //die(" me llego".$Q);
+        $respuesta = array("status"=>0, "descripcion"=>$Pelicula->fetch($Q));
+        //die(print_r($Device->hola()));
+         //$respuesta = array("status"=>0, "descripcion"=>$Pelicula->consulta("ISH"));
+         $this->response($respuesta, 200);
+        
+        
+       
+
+    }
 
     public function postAction() {
 

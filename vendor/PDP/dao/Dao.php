@@ -114,6 +114,7 @@ class Dao {
     public function fetch($Q, $Model) {
 
         try {
+            //die("toy aca");
             $result = $Q->preparar($Model);
             //die("estpy aca".$result);
             $Dar = $this->DataAccess->retrieve(
