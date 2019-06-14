@@ -4,6 +4,12 @@ use rest\controller\Rest;
 use models\Pelicula;
 use patterns\ServiceLocator;
 
+//Consultas
+use patterns\strategy\Query;
+use patterns\strategy\QAnd;
+use patterns\strategy\QueryAbstract;
+use patterns\strategy\QLike;
+
 class PeliculaController extends Rest {
 
     public function postAction() {
@@ -13,10 +19,10 @@ class PeliculaController extends Rest {
 
         try {
             /* Recibo los parametros del cliente */
-            $tituloPelicula = $this->getParam("tituloPelicula");
-            $anioPelicula = $this->getParam("anioPelicula");
-            $categoriaPelicula = $this->getParam("categoriaPelicula");
-            $descripcionPelicula = $this->getParam("descripcionPelicula");
+            $tituloPelicula = $this->getRawParam("tituloPelicula");
+            $anioPelicula = $this->getRawParam("anioPelicula");
+            $categoriaPelicula = $this->getRawParam("categoriaPelicula");
+            $descripcionPelicula = $this->getRawParam("descripcionPelicula");
 
 
             /* Seteo el lenguaje */
@@ -65,4 +71,51 @@ class PeliculaController extends Rest {
         }
     }
 
+    
+        public function putAction() {
+        /* Vamos a especificar que el tipo de contenido que devolvemos es JSON */
+        $this->getResponse()->setHeader('Content-type', 'application/json');
+        
+        try {
+            
+             $id = $this->getRawParam("id");
+             /* Recibo los parametros del cliente */
+            $tituloPelicula = $this->getRawParam("tituloPelicula");
+            $anioPelicula = $this->getRawParam("anioPelicula");
+            $categoriaPelicula = $this->getRawParam("categoriaPelicula");
+            $descripcionPelicula = $this->getRawParam("descripcionPelicula");
+             
+            $Pelicula = new Pelicula();
+            
+            /* Cargo la query*/
+           
+            $Q = new Query($Pelicula);
+            $Q->add(new QAnd("id", $id));
+            
+            /* Esto carga el device por el ID valido de la BD, el id lo tiene*/
+            if (!$Pelicula->load($Q))
+            {
+                throw new \Exception("id no valida");
+            }
+            
+            
+            
+            $Pelicula->titulo = $tituloPelicula;
+            $Pelicula->categoria = $categoriaPelicula;
+            $Pelicula->anio = $anioPelicula;
+            $Pelicula->descripcion = $descripcionPelicula;
+            
+            $Pelicula->id=$id;
+            $Pelicula->updated = Date("Y-m-m h:m:s");
+            $Pelicula->update();
+            $respuesta = array("status" => 0, "descripcion" => array());
+
+
+            $this->response($respuesta, 209);
+        } catch (Exception $e) {
+            $this->error($e);
+        }
+    }
+    
+    
 }
