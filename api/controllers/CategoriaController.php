@@ -34,7 +34,7 @@ class CategoriaController extends Rest {
 
         try {
             /* Recibo los parametros del cliente */
-            $nombreCategoria = $this->getParam("nombreCategoria");
+            $nombreCategoria = $this->getRawParam("nombreCategoria");
 
             /* Seteo el lenguaje */
             $lang = $this->lang;
@@ -49,8 +49,10 @@ class CategoriaController extends Rest {
             $Categoria = new Categoria();
             $Categoria->nombre = $nombreCategoria;
             $Categoria->create();
-            echo("Se dio de alta $nombreCategoria");
-            exit();
+            $respuesta = array("status" => 0, "descripcion" =>"Se dio de alta $nombreCategoria");
+           
+            $this->response($respuesta, 200);
+            
         } catch (Exception $e) {
             die($e->getMessage());
             $this->error($e);

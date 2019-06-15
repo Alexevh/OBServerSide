@@ -1,6 +1,7 @@
 <?php
 
 namespace rest\controller;
+use patterns\ServiceLocator;
 
 class Rest extends \Zend_Rest_Controller {
     
@@ -37,11 +38,11 @@ class Rest extends \Zend_Rest_Controller {
     public function indexAction() {
            
         
-        die("Esty en el index del controlador por defecto");
+       $this->noImplementado();
     }
     
     public function postAction() {
-        die("Esty en el postaction del controlador por defecto");
+       $this->noImplementado();
     }
     
     public function putAction() {
@@ -54,19 +55,19 @@ class Rest extends \Zend_Rest_Controller {
     }
     
     public function deleteAction() {
-          die("Esty en el delete del controlador por defecto");
+         $this->noImplementado();
          
           
     }
      public function getAction() {
          
          
-          die("Esty en el get del controlador por defecto ");
+         $this->noImplementado();
           
     }
     
      public function headAction() {
-          die("Esty en el head del controlador por defecto");
+       $this->noImplementado();
           
     }
     
@@ -78,5 +79,19 @@ class Rest extends \Zend_Rest_Controller {
         $respuesta = \Zend_Json::encode($response);
         exit($this->getResponse()->appendBody($respuesta));
         
+    }
+    
+        public   function noImplementado() {
+         /* Seteo el lenguaje */
+        $lang = $this->lang;
+        $Translator = ServiceLocator::getTranslator($lang);
+        /* Vamos a especificar que el tipo de contenido que devolvemos es JSON */
+        $this->getResponse()->setHeader('Content-type', 'application/json');
+        //die(" me llego".$Q);
+        //$error = $Translator->_(("error_no_implementado"), 409);
+        $respuesta = array("status" => 0, "descripcion" => $Translator->_("error_no_implementado"));
+        //die(print_r($Device->hola()));
+        //$respuesta = array("status"=>0, "descripcion"=>$Pelicula->consulta("ISH"));
+        $this->response($respuesta, 200);
     }
 }

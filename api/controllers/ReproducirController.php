@@ -18,6 +18,18 @@ class ReproducirController extends rest{
         $pelicula = $this->getRawParam("pelicula");
         $usuario = $this->getRawParam("usuarioid");
         
+        if (empty($pelicula) or empty($usuario))
+        {
+              /* Vamos a especificar que el tipo de contenido que devolvemos es JSON */
+        $this->getResponse()->setHeader('Content-type', 'application/json');
+        //die(" me llego".$Q);
+        $respuesta = array("status"=>0, "descripcion"=>"hubo un error al reproducir");
+        //die(print_r($Device->hola()));
+         //$respuesta = array("status"=>0, "descripcion"=>$Pelicula->consulta("ISH"));
+         $this->response($respuesta, 200);
+        }
+        
+        
         $log = new Log();
         $log->pelicula=$pelicula;
         $log->usuario=$usuario;
