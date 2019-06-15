@@ -12,4 +12,12 @@ class Usuario extends Model{
     public $telefono = null;
     public $status = null;
     
+    
+     public function validarExisteCampo($campo, $valor) {
+       return  $this->Dao->validarExisteCampo($campo, $valor);
+    }
+    
+    
 }
+
+
