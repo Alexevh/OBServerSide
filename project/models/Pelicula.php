@@ -11,8 +11,8 @@ class Pelicula extends Model{
     public $anio = null;
     public $categoria = null;
 
-     public function consultaRanking($Modelo) {
-       return  $this->Dao->consulta($Modelo);
+     public function obtenerRanking($anio) {
+       return  $this->Dao->obtenerRanking($anio);
     }
     
 }

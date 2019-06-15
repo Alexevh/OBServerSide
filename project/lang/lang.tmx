@@ -73,5 +73,15 @@
     </tuv>
 </tu>
 
+
+<tu tuid="error_no_implementado">
+    <tuv xml:lang="es">
+    <seg>Este metodo no esta implementado </seg>
+    </tuv>
+    <tuv xml:lang="en">
+    <seg>This method is not available</seg>
+    </tuv>
+</tu>
+
 </body>
 </tmx>

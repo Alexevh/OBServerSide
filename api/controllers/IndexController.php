@@ -1,39 +1,51 @@
 <?php
 
-/* Controlador por defecto.*/
-class IndexController extends Zend_Rest_Controller
-{
-    /* El index del REST nos lista los productos*/
+use patterns\ServiceLocator;
+
+/* Controlador por defecto. */
+
+class IndexController extends Zend_Rest_Controller {
+    /* El index del REST nos lista los productos */
+
     public function indexAction() {
         
-        
-        
-        
-        die("Esty en el index del controlador por defecto");
     }
-    
+
     public function postAction() {
-        die("Esty en el postaction del controlador por defecto");
+        //die("la concha");
+        noImplementado();
     }
-    
+
     public function putAction() {
-          die("Esty en el putaction del controlador por defecto");
+        noImplementado();
     }
-    
+
     public function deleteAction() {
-          die("Esty en el delete del controlador por defecto");
-          
+        noImplementado();
     }
-     public function getAction() {
-         
-         
-          die("Esty en el get del controlador por defecto ");
-          
+
+    public function getAction() {
+
+
+        noImplementado();
     }
-    
-     public function headAction() {
-          die("Esty en el head del controlador por defecto");
-          
+
+    public function headAction() {
+        noImplementado();
     }
-    
+
+    public function noImplementado() {
+        /* Seteo el lenguaje */
+        $lang = $this->lang;
+        $Translator = ServiceLocator::getTranslator($lang);
+        /* Vamos a especificar que el tipo de contenido que devolvemos es JSON */
+        $this->getResponse()->setHeader('Content-type', 'application/json');
+        //die(" me llego".$Q);
+        $error = $Translator->_(("error_no_implementado"), 409);
+        $respuesta = array("status" => 0, "descripcion" => "$error");
+        //die(print_r($Device->hola()));
+        //$respuesta = array("status"=>0, "descripcion"=>$Pelicula->consulta("ISH"));
+        $this->response($respuesta, 200);
+    }
+
 }
