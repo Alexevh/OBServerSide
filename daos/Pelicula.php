@@ -7,6 +7,8 @@ class Pelicula extends Dao {
     public $descripcion = null;
     public $anio = null;
     public $categoria = null;
+    public $mapa = '';
+    public $foto ='';
     
     
     public function consultaRanking($anio) {

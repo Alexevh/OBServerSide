@@ -10,6 +10,8 @@ class Pelicula extends Model{
     public $descripcion = null;
     public $anio = null;
     public $categoria = null;
+    public $mapa = '';
+    public $foto ='';
 
      public function obtenerRanking($anio) {
        return  $this->Dao->obtenerRanking($anio);

@@ -13,6 +13,7 @@ class Usuario extends Dao{
     public $email = null;
     public $telefono = null;
     public $status = null;
+    public $password = null;
     
     
     public function ValidarExisteCampo($campo, $valor){

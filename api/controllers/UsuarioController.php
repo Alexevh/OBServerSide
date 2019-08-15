@@ -30,6 +30,7 @@ class UsuarioController extends Rest {
             $apellidoUsuario = $this->getRawParam("apellidoUsuario");
             $telefonoUsuario = $this->getRawParam("telefonoUsuario");
             $statusUsuario = $this->getRawParam("statusUsuario");
+            $paswwordUsuario = $this->getRawParam("passwordUsuario");
 
             /* Seteo el lenguaje */
             $lang = $this->lang;
@@ -84,6 +85,7 @@ class UsuarioController extends Rest {
             $Usuario->email = $emailUsuario;
             $Usuario->telefono = $telefonoUsuario;
             $Usuario->status = $statusUsuario;
+            $Usuario->password= $paswwordUsuario;
             $Usuario->create();
 
             /* Devolvemos en JSON el OK */
